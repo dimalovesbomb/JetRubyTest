@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  justify-content: center;
+}
+
+.board-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  margin-top: 25px;
+}
+
+.card {
+  width: 120px;
+  height: 120px;
+  margin: 10px;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.card_opened {
+  animation: 0.5s fade-in;
+}
+
+.card_closed {
+  position: relative;
+  background-color: black !important;
+}
+
+.card_closed::before {
+  content: '?';
+  position: absolute;
+  top: 35%;
+  left: 40%;
+  font-size: 32px;
+  color: white;
+  font-family: Arial;
+  text-transform: uppercase;
+}
+
+.card_guessed {
+  position: relative;
+  opacity: 0.7;
+}
+
+.card_guessed::before {
+  content: 'right!';
+  position: absolute;
+  top: 40%;
+  left: 23%;
+  font-size: 20px;
+  color: white;
+  font-family: Arial;
+  text-transform: uppercase;
+}
