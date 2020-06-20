@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import App from './containers/app';
-import colors from './reducers/colors';
+import cards from './reducers/cards';
 
 const initialState = [
   {id: 1, color: '#395889', isOpened: false, guessed: false},
@@ -25,7 +25,7 @@ const initialState = [
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(colors, initialState, composeEnhancers());
+const store = createStore(cards, initialState, composeEnhancers());
 
 ReactDOM.render(
   <App store={store} />,
