@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -6,6 +7,17 @@ module.exports = {
     filename: 'build.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: './src/index.html',
+      minify: false,
+      scriptLoading: 'defer',
+      meta: {
+        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
+      }
+    })
+  ],
   module: {
   rules: [
       {
