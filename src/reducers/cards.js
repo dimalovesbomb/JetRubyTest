@@ -21,25 +21,34 @@ const cards = (state = [], action) => {
         if (openedCards.length > 2) {
           return state.map(card => {
             return {
-              id: card.id,
-              color: card.color,
-              isOpened: false,
-              guessed: card.guessed
+              ...card,
+              isOpened: false
             }
           })
         }
 
       case 'CHECK_GUESSED':
         const cards = state.filter(card => card.isOpened);
-        const guessedCards = checkGuessed(cards);
 
-        if (guessedCards) {
-          guessedCards.forEach(card => {
-            card.guessed = true
-          });
+        if (cards.length === 2) {
+          const guessedCards = checkGuessed(cards);
 
-          state.concat(...state, ...guessedCards);
+          if (guessedCards) {
+            const guessedIds = guessedCards.map(card => card.id);
+
+            if (guessedIds) {
+              return state.map(card => {
+                if (guessedIds.includes(card.id)) {
+                  return { ...card, guessed: true };
+                } else {
+                  return { ...card };
+                }
+              });
+            }
+          }
+          return state;
         }
+        return state;
 
     default:
     return state;
@@ -48,3 +57,14 @@ const cards = (state = [], action) => {
 }
 
 export default cards;
+
+// const cards = state.filter(card => card.isOpened);
+// const guessedCards = checkGuessed(cards);
+//
+// if (guessedCards) {
+//   guessedCards.forEach(card => {
+//     card.guessed = true
+//   });
+//
+//   state.concat(...state, ...guessedCards); // add return
+// }
