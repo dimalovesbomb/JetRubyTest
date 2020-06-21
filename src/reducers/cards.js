@@ -58,13 +58,3 @@ const cards = (state = [], action) => {
 
 export default cards;
 
-// const cards = state.filter(card => card.isOpened);
-// const guessedCards = checkGuessed(cards);
-//
-// if (guessedCards) {
-//   guessedCards.forEach(card => {
-//     card.guessed = true
-//   });
-//
-//   state.concat(...state, ...guessedCards); // add return
-// }
